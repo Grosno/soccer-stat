@@ -12,3 +12,9 @@ export interface ICompetitionsActionType extends IActionType {
   isLoadingError?: boolean;
   errorMsg?: string;
 }
+
+export interface IPaginationActionType extends IActionType {
+  currentPage?: number;
+  total?: number;
+  pageSize?: number;
+}

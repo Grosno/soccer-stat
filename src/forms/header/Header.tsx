@@ -3,7 +3,7 @@ import './Header.scss';
 import { COMPETITION_PATH } from '../../constants/urlPath';
 
 const Header = () => (
-  <div className="header">
+  <header className="header">
     <div className="header__title">
       <span className="header__title__text">Soccer Stats</span>
     </div>
@@ -11,7 +11,7 @@ const Header = () => (
       <a href={COMPETITION_PATH}>Лиги</a>
     </div>
     <div className="header__empty" />
-  </div>
+  </header>
 );
 
 export default Header;
