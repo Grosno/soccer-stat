@@ -1,0 +1,12 @@
+@import "src/constants/commonStyles";
+
+.teams-form {
+  width: 100%;
+
+  &__title {
+    text-align: center;
+  }
+  &__menu {
+    background-color: $base-background-color;
+  }
+}

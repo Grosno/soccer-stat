@@ -6,6 +6,7 @@ import './App.scss';
 import Header from './forms/header/Header';
 import Competitions from './forms/competitions/Competitions';
 import Paginator from './components/pagination/Paginator';
+import Teams from './forms/teams/Teams';
 
 const App = () => (
   <HashRouter>
@@ -17,8 +18,12 @@ const App = () => (
             <Competitions />
             <Paginator />
           </Route>
+          <Route exact path="/competitions/:id/teams">
+            <Teams />
+          </Route>
         </Switch>
       </section>
+      {/* <Redirect to={COMPETITION_PATH} /> */}
     </div>
   </HashRouter>
 );
