@@ -6,7 +6,7 @@ import {
 } from '../constants/actions/competitions';
 import { ICompetitionsActionType } from '../types/actionTypes';
 import { getAllCompetitions } from '../api-requests/apiRequests';
-import { IAllCompetitions } from '../types/apiTypes';
+import { IAllCompetitions } from '../types/api-types/apiTypes';
 
 const showLoader = (): ICompetitionsActionType => ({
   type: SHOW_COMPETITIONS_LOADER,

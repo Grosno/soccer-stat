@@ -2,13 +2,13 @@ import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { IState } from '../../types/stateTypes';
-import { IMatch } from '../../types/api-types/matchTypes';
+import { ITeamMatch } from '../../types/api-types/teamInfoTypes';
 
 interface IProps {
-  matches: Array<IMatch>;
+  teamMatches: Array<ITeamMatch>;
 }
 
-const LeagueCalendar = ({ matches }: IProps) => (
+const TeamCalendar = ({ teamMatches }: IProps) => (
   <div>
     <table className="league-calendar">
       <tbody>
@@ -17,13 +17,17 @@ const LeagueCalendar = ({ matches }: IProps) => (
           <th colSpan={3}>Команды</th>
           <th>Счет</th>
         </tr>
-        {matches.map((match: IMatch, index: number) => (
+        {teamMatches.map((match: ITeamMatch, index: number) => (
           <tr key={index}>
             <td>{moment(match.utcDate).format('DD MMM YYYY')}</td>
             <td>{match.homeTeam.name}</td>
             <td>vs</td>
             <td>{match.awayTeam.name}</td>
-            <td>{`${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam}`}</td>
+            <td>
+              {match.score.fullTime.homeTeam === null
+                ? '-'
+                : `${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam}`}
+            </td>
           </tr>
         ))}
       </tbody>
@@ -33,6 +37,6 @@ const LeagueCalendar = ({ matches }: IProps) => (
 
 export default connect(
   (state: IState) => ({
-    matches: state.matches.matches,
+    teamMatches: state.teamMatches.matches,
   }),
-)(LeagueCalendar);
+)(TeamCalendar);

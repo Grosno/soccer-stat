@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
 import { IState } from '../../types/stateTypes';
-import { ICompetition } from '../../types/apiTypes';
+import { IGeneralCompetition } from '../../types/api-types/apiTypes';
 import { editLimitOfElementsPerPage } from '../../utils/elementsPerPage';
 import { changePaginationAction } from '../../actions/PaginationAction';
 import './CompetitionsTable.scss';
 
 interface IProps {
-  competitions: Array<ICompetition>;
+  competitions: Array<IGeneralCompetition>;
   totalCompetitions: number;
   currentPage: number;
   pageSize: number;
@@ -19,7 +19,7 @@ interface IProps {
 const CompetitionsTable = ({
   competitions, totalCompetitions, currentPage, pageSize, pagination,
 }: IProps) => {
-  const [limitedCompetitions, setLimitedCompetitions] = useState([] as Array<ICompetition>);
+  const [limitedCompetitions, setLimitedCompetitions] = useState([] as Array<IGeneralCompetition>);
 
   useEffect(() => {
     if (competitions.length !== 0) {
@@ -41,7 +41,7 @@ const CompetitionsTable = ({
           <th>Начало сезона</th>
           <th>Окончание сезона</th>
         </tr>
-        {limitedCompetitions.map((competition: ICompetition, index: number) => (
+        {limitedCompetitions.map((competition: IGeneralCompetition, index: number) => (
           <tr key={index}>
             <td><a href={`#/competitions/${competition.id}/teams`}>{competition.name}</a></td>
             <td>{competition.area.name}</td>

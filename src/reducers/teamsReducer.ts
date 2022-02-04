@@ -1,7 +1,7 @@
 import produce from 'immer';
 import { ITeamsState } from '../types/stateTypes';
 import { ITeamsActionType } from '../types/actionTypes';
-import { ISeason, ITeam, ITeamsCompetition } from '../types/apiTypes';
+import { ITeamsSeason, ITeam, ICompetition } from '../types/api-types/apiTypes';
 import { EMPTY_STRING } from '../constants/common';
 import {
   HIDE_TEAMS_LOADER, LOAD_TEAMS_ERROR, LOAD_TEAMS_SUCCESS, SHOW_TEAMS_LOADER,
@@ -9,8 +9,8 @@ import {
 
 const initialState: ITeamsState = {
   count: 0,
-  competition: {} as ITeamsCompetition,
-  season: {} as ISeason,
+  competition: {} as ICompetition,
+  season: {} as ITeamsSeason,
   teams: [],
   isLoading: false,
   isLoadingError: false,
@@ -34,10 +34,10 @@ const loadingError = (draft: ITeamsState, error?: string) => {
   return draft;
 };
 
-const loadTeams = (draft: ITeamsState, teams?: Array<ITeam>, season?: ISeason, competition?: ITeamsCompetition, count?: number) => {
+const loadTeams = (draft: ITeamsState, teams?: Array<ITeam>, season?: ITeamsSeason, competition?: ICompetition, count?: number) => {
   draft.teams = teams || [];
-  draft.season = season || {} as ISeason;
-  draft.competition = competition || {} as ITeamsCompetition;
+  draft.season = season || {} as ITeamsSeason;
+  draft.competition = competition || {} as ICompetition;
   draft.count = count || 0;
   draft.isLoadingError = false;
   return draft;

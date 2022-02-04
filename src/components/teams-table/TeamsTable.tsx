@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { IState } from '../../types/stateTypes';
-import { ITeam } from '../../types/apiTypes';
+import { ITeam } from '../../types/api-types/apiTypes';
 import { changePaginationAction } from '../../actions/PaginationAction';
 import './TeamsTable.scss';
 
@@ -19,10 +19,10 @@ const TeamsTable = ({ teams }: IProps) => (
           <th>Веб-сайт</th>
         </tr>
         {teams.map((team: ITeam, index: number) => (
-          <tr key={index}>
+          <tr className="teams-table__row" onClick={(e) => console.log(e.target)} key={index}>
             <td>
               <img src={team.crestUrl} alt="" />
-              <span>{team.name}</span>
+              <a href={`#/teams/${team.id}/matches`}>{team.name}</a>
             </td>
             <td>{team.website}</td>
           </tr>

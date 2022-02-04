@@ -2,3 +2,14 @@
   width: 1.375rem;
   padding-right: .375rem;
 }
+
+.teams-table {
+  &__row:hover {
+    cursor: pointer;
+    background-color: bisque;
+  }
+}
+
+.teams-table * {
+  color: rgba(0,0,0, .9);
+}

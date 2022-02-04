@@ -1,11 +1,11 @@
 // --------------Competitions--------------
 export interface IAllCompetitions {
-  competitions: Array<ICompetition>;
+  competitions: Array<IGeneralCompetition>;
   count: number;
   filters: object;
 }
 
-export interface ICompetition {
+export interface IGeneralCompetition {
   id: number;
   code: string;
   emblemUrl: string;
@@ -17,6 +17,13 @@ export interface ICompetition {
   currentSeason: ICurrentSeason;
 }
 
+export interface ISeason {
+  id: number;
+  currentMatchday: number;
+  startDate: string;
+  endDate: string;
+}
+
 interface IAreaCompetitionState {
   id: number;
   countryCode: string;
@@ -24,11 +31,7 @@ interface IAreaCompetitionState {
   name: string;
 }
 
-interface ICurrentSeason {
-  id: number;
-  currentMatchday: number;
-  startDate: string;
-  endDate: string;
+interface ICurrentSeason extends ISeason{
   winner: string;
 }
 
@@ -36,12 +39,12 @@ interface ICurrentSeason {
 export interface ITeams {
   count: number;
   filters: object;
-  competition: ITeamsCompetition;
-  season: ISeason;
+  competition: ICompetition;
+  season: ITeamsSeason;
   teams: Array<ITeam>;
 }
 
-export interface ITeamsCompetition {
+export interface ICompetition {
   id: number;
   area: ITeamsArea;
   name: string;
@@ -72,10 +75,6 @@ interface ITeamsArea {
   name: string;
 }
 
-export interface ISeason {
-  id: number;
-  startDate: string;
-  endDate: string;
-  currentMatchday: number;
+export interface ITeamsSeason extends ISeason{
   availableStages: Array<string>;
 }

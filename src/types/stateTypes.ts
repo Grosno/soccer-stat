@@ -1,20 +1,27 @@
 import {
-  ICompetition, ISeason, ITeam, ITeamsCompetition,
-} from './apiTypes';
+  IGeneralCompetition, ITeamsSeason, ITeam, ICompetition,
+} from './api-types/apiTypes';
+import { IMatch } from './api-types/matchTypes';
+import { ITeamMatch } from './api-types/teamInfoTypes';
+
+interface ICommonState {
+  isLoading: boolean;
+  isLoadingError: boolean;
+  errorMsg: string;
+}
 
 export interface IState {
   competitions: IAllCompetitionsState;
   pagination: IPaginationState;
   teams: ITeamsState;
+  matches: IMatchesState;
+  teamMatches: ITeamMatchesState;
 }
 
-export interface IAllCompetitionsState {
-  competitions: Array<ICompetition>;
+export interface IAllCompetitionsState extends ICommonState {
+  competitions: Array<IGeneralCompetition>;
   count: number;
   filters: object;
-  isLoading: boolean;
-  isLoadingError: boolean;
-  errorMsg: string;
 }
 
 export interface IPaginationState {
@@ -23,13 +30,23 @@ export interface IPaginationState {
   pageSize: number;
 }
 
-export interface ITeamsState {
+export interface ITeamsState extends ICommonState {
   teams: Array<ITeam>;
-  competition: ITeamsCompetition;
-  season: ISeason;
+  competition: ICompetition;
+  season: ITeamsSeason;
   count: number;
   filters: object;
-  isLoading: boolean;
-  isLoadingError: boolean;
-  errorMsg: string;
+}
+
+export interface IMatchesState extends ICommonState {
+  matches: Array<IMatch>;
+  competition: ICompetition;
+  count: number;
+  filters: object;
+}
+
+export interface ITeamMatchesState extends ICommonState {
+  count: number;
+  filters: object;
+  matches: Array<ITeamMatch>;
 }

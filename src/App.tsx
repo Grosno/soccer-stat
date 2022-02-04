@@ -6,7 +6,8 @@ import './App.scss';
 import Header from './forms/header/Header';
 import Competitions from './forms/competitions/Competitions';
 import Paginator from './components/pagination/Paginator';
-import Teams from './forms/teams/Teams';
+import LeagueInfo from './forms/league-info/LeagueInfo';
+import TeamInfo from './forms/team-info/TeamInfo';
 
 const App = () => (
   <HashRouter>
@@ -19,7 +20,10 @@ const App = () => (
             <Paginator />
           </Route>
           <Route exact path="/competitions/:id/teams">
-            <Teams />
+            <LeagueInfo />
+          </Route>
+          <Route exact path="/teams/:id/matches">
+            <TeamInfo />
           </Route>
         </Switch>
       </section>

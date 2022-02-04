@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { ITeams } from '../types/apiTypes';
+import { ITeams } from '../types/api-types/apiTypes';
 import {
   HIDE_TEAMS_LOADER, LOAD_TEAMS_ERROR, LOAD_TEAMS_SUCCESS, SHOW_TEAMS_LOADER,
 } from '../constants/actions/teams';

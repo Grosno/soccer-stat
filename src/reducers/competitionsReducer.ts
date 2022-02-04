@@ -6,7 +6,7 @@ import {
   LOAD_COMPETITIONS_SUCCESS,
   SHOW_COMPETITIONS_LOADER,
 } from '../constants/actions/competitions';
-import { ICompetition } from '../types/apiTypes';
+import { IGeneralCompetition } from '../types/api-types/apiTypes';
 import { EMPTY_STRING } from '../constants/common';
 
 const initialState: IAllCompetitionsState = {
@@ -34,7 +34,7 @@ const loadingError = (draft: IAllCompetitionsState, error?: string) => {
   return draft;
 };
 
-const loadCompetitions = (draft: IAllCompetitionsState, competitions?: Array<ICompetition>, count?: number) => {
+const loadCompetitions = (draft: IAllCompetitionsState, competitions?: Array<IGeneralCompetition>, count?: number) => {
   draft.competitions = competitions || [];
   draft.count = count || 0;
   draft.isLoadingError = false;

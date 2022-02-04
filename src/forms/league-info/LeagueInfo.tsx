@@ -7,30 +7,34 @@ import { CalendarOutlined, TeamOutlined } from '@ant-design/icons';
 import { IState } from '../../types/stateTypes';
 import PreLoader from '../../components/pre-loader/PreLoader';
 import { loadTeamsByIDAction } from '../../actions/TeamsAction';
-import { ITeamsCompetition } from '../../types/apiTypes';
+import { ICompetition } from '../../types/api-types/apiTypes';
 import LoadingError from '../../components/loading-error/LoadingError';
-import './Teams.scss';
+import './LeagueInfo.scss';
 import TeamsTable from '../../components/teams-table/TeamsTable';
+import LeagueCalendar from '../../components/league-calendar/LeagueCalendar';
+import { loadMatchesByIDAction } from '../../actions/LeagueCalendarAction';
 
 interface IProps {
-  competition: ITeamsCompetition;
+  competition: ICompetition;
   isLoading: boolean;
   isLoadingError: boolean;
   loadTeamsByID: (id: string) => void;
+  loadMatchesByID: (id: string) => void;
 }
 
 interface IParams {
   id: string,
 }
 
-const Teams = ({
-  competition, isLoading, isLoadingError, loadTeamsByID,
+const LeagueInfo = ({
+  competition, isLoading, isLoadingError, loadTeamsByID, loadMatchesByID,
 }: IProps) => {
   const params = useParams<IParams>();
   const [selectedMenu, setSelectedMenu] = useState('teams');
 
   useEffect(() => {
     loadTeamsByID(params.id);
+    loadMatchesByID(params.id);
   }, []);
 
   const handleMenuClick = (event: any) => {
@@ -42,9 +46,9 @@ const Teams = ({
   }
 
   return (
-    <article className="teams-form">
+    <article className="league-info-form">
       <Menu
-        className="teams-form__menu"
+        className="league-info-form__menu"
         mode="horizontal"
         onClick={handleMenuClick}
         selectedKeys={[selectedMenu]}
@@ -55,11 +59,11 @@ const Teams = ({
       {selectedMenu === 'teams'
         ? (
           <div>
-            <h2 className="teams-form__title">{`Футбольные команды. Лига - ${competition.name}`}</h2>
+            <h2 className="league-info-form__title">{`Футбольные команды. Лига - ${competition.name}`}</h2>
             {isLoading ? <PreLoader /> : <TeamsTable />}
           </div>
         )
-        : (<div>Страница календаря лиги</div>)}
+        : (<LeagueCalendar />)}
     </article>
   );
 };
@@ -72,5 +76,6 @@ export default connect(
   }),
   (dispatch) => ({
     loadTeamsByID: bindActionCreators(loadTeamsByIDAction, dispatch),
+    loadMatchesByID: bindActionCreators(loadMatchesByIDAction, dispatch),
   }),
-)(Teams);
+)(LeagueInfo);

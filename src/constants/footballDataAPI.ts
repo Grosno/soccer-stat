@@ -1,5 +1,6 @@
 export const BASE_URL = 'https://api.football-data.org/v2';
 export const COMPETITIONS_URL = `${BASE_URL}/competitions`;
+export const TEAM_INFO_URL = `${BASE_URL}/teams`;
 
 export const METHOD_GET = 'GET';
 
