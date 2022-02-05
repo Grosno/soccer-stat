@@ -1,0 +1,16 @@
+.team-calendar {
+  &__status_finished {
+    padding: 0 .1875rem;
+    border-radius: .375rem;
+    background-color: lightseagreen;
+  }
+  &__status_scheduled {
+    padding: 0 .1875rem;
+    border-radius: .375rem;
+    background-color: lightskyblue;
+  }
+}
+
+.team-calendar th, td {
+  width: 16.6%;
+}

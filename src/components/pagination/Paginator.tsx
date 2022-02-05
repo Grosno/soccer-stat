@@ -5,11 +5,11 @@ import { Pagination } from 'antd';
 import './Paginator.scss';
 import { changeCurrentPageAction, changePageSizeAction } from '../../actions/PaginationAction';
 import { IState } from '../../types/stateTypes';
-import { DEFAULT_PAGE_SIZE_VALUE } from '../../constants/common';
 
 interface IProps {
   total: number;
   currentPage: number;
+  pageSize: number;
   changeCurrentPage: (page: number) => void,
   changePageSize: (pageSize: number) => void,
 }
@@ -18,6 +18,7 @@ const pageSizeOptions = [10, 20, 30, 50];
 const Paginator = ({
   total,
   currentPage,
+  pageSize,
   changeCurrentPage,
   changePageSize,
 }: IProps) => {
@@ -36,7 +37,7 @@ const Paginator = ({
         current={currentPage === null ? 0 : currentPage}
         pageSizeOptions={pageSizeOptions}
         onShowSizeChange={handleShowSizeChange}
-        defaultPageSize={DEFAULT_PAGE_SIZE_VALUE}
+        pageSize={pageSize}
         showSizeChanger
         onChange={handleSelectFormClick}
       />

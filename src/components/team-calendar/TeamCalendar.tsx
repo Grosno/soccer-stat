@@ -3,6 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { IState } from '../../types/stateTypes';
 import { ITeamMatch } from '../../types/api-types/teamInfoTypes';
+import './TeamCalendar.scss';
 
 interface IProps {
   teamMatches: Array<ITeamMatch>;
@@ -10,16 +11,22 @@ interface IProps {
 
 const TeamCalendar = ({ teamMatches }: IProps) => (
   <div>
-    <table className="league-calendar">
+    <table className="team-calendar">
       <tbody>
         <tr>
           <th>Дата</th>
+          <th>Статус</th>
           <th colSpan={3}>Команды</th>
           <th>Счет</th>
         </tr>
         {teamMatches.map((match: ITeamMatch, index: number) => (
           <tr key={index}>
             <td>{moment(match.utcDate).format('DD MMM YYYY')}</td>
+            <td>
+              <span className={`team-calendar__status_finished ${match.status === 'SCHEDULED' && 'team-calendar__status_scheduled'}`}>
+                {match.status}
+              </span>
+            </td>
             <td>{match.homeTeam.name}</td>
             <td>vs</td>
             <td>{match.awayTeam.name}</td>

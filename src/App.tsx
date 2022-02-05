@@ -25,6 +25,9 @@ const App = () => (
           <Route exact path="/teams/:id/matches">
             <TeamInfo />
           </Route>
+          <Route exact path="/teams/:id">
+            <TeamInfo />
+          </Route>
         </Switch>
       </section>
       {/* <Redirect to={COMPETITION_PATH} /> */}

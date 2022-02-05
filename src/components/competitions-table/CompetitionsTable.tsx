@@ -7,6 +7,7 @@ import { IGeneralCompetition } from '../../types/api-types/apiTypes';
 import { editLimitOfElementsPerPage } from '../../utils/elementsPerPage';
 import { changePaginationAction } from '../../actions/PaginationAction';
 import './CompetitionsTable.scss';
+import { EMPTY_VALUE } from '../../constants/common';
 
 interface IProps {
   competitions: Array<IGeneralCompetition>;
@@ -45,8 +46,8 @@ const CompetitionsTable = ({
           <tr key={index}>
             <td><a href={`#/competitions/${competition.id}/teams`}>{competition.name}</a></td>
             <td>{competition.area.name}</td>
-            <td>{moment(competition.currentSeason.startDate).format('DD MMM YYYY')}</td>
-            <td>{moment(competition.currentSeason.endDate).format('DD MMM YYYY')}</td>
+            <td>{competition.currentSeason !== null ? moment(competition.currentSeason.startDate).format('DD MMM YYYY') : EMPTY_VALUE}</td>
+            <td>{competition.currentSeason !== null ? moment(competition.currentSeason.endDate).format('DD MMM YYYY') : EMPTY_VALUE}</td>
           </tr>
         ))}
       </tbody>

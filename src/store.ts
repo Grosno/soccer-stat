@@ -6,6 +6,7 @@ import paginationReducer from './reducers/paginationReducer';
 import teamsReducer from './reducers/teamsReducer';
 import leagueCalendarReducer from './reducers/leagueCalendarReducer';
 import teamCalendarReducer from './reducers/teamCalendarReducer';
+import teamSquadReducer from './reducers/teamSquadReducer';
 
 export const store = createStore(
   combineReducers({
@@ -14,6 +15,7 @@ export const store = createStore(
     teams: teamsReducer,
     matches: leagueCalendarReducer,
     teamMatches: teamCalendarReducer,
+    teamSquad: teamSquadReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk)),
 );

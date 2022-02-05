@@ -3,7 +3,7 @@ import { IMatch } from './matchTypes';
 
 export interface ITeamInfo extends ITeam {
   activeCompetitions: Array<ICompetition>;
-  squad: Array<ISquad>;
+  squad: Array<ITeamSquad>;
 }
 
 export interface ITeamMatches {
@@ -15,7 +15,7 @@ export interface ITeamMatch extends IMatch {
   competition: ITeamMatchCompetition;
 }
 
-interface ISquad {
+export interface ITeamSquad {
   id: number;
   name: string;
   position: string;

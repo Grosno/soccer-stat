@@ -19,9 +19,9 @@ export interface IGeneralCompetition {
 
 export interface ISeason {
   id: number;
-  currentMatchday: number;
   startDate: string;
   endDate: string;
+  currentMatchday: number;
 }
 
 interface IAreaCompetitionState {
@@ -31,7 +31,7 @@ interface IAreaCompetitionState {
   name: string;
 }
 
-interface ICurrentSeason extends ISeason{
+interface ICurrentSeason extends ISeason {
   winner: string;
 }
 

@@ -11,12 +11,16 @@ import { loadMatchesByTeamIDAction } from '../../actions/TeamCalendarAction';
 import { ITeam } from '../../types/api-types/apiTypes';
 import TeamCalendar from '../../components/team-calendar/TeamCalendar';
 import './TeamInfo.scss';
+import { EMPTY_STRING } from '../../constants/common';
+import TeamSquad from '../../components/team-squad/TeamSquad';
+import { loadTeamSquadByIDAction } from '../../actions/TeamSquadAction';
 
 interface IProps {
   teams: Array<ITeam>;
   isLoading: boolean;
   isLoadingError: boolean;
   loadMatchesByTeamID: (id: string) => void;
+  loadTeamSquadByID: (id: string) => void;
 }
 
 interface IParams {
@@ -24,13 +28,16 @@ interface IParams {
 }
 
 const TeamInfo = ({
-  teams, isLoading, isLoadingError, loadMatchesByTeamID,
+  teams, isLoading, isLoadingError, loadMatchesByTeamID, loadTeamSquadByID,
 }: IProps) => {
   const params = useParams<IParams>();
   const [selectedMenu, setSelectedMenu] = useState('calendar');
+  const [teamName, setTeamName] = useState(EMPTY_STRING);
 
   useEffect(() => {
     loadMatchesByTeamID(params.id);
+    loadTeamSquadByID(params.id);
+    teams.find((team: ITeam) => team.id.toString() === params.id && setTeamName(team.name));
   }, []);
 
   const handleMenuClick = (event: any) => {
@@ -56,12 +63,12 @@ const TeamInfo = ({
         ? (
           <div>
             <h2 className="team-info-form__title">
-              {`Календарь игр команды - ${teams.find((team: ITeam) => team.id.toString() === params.id && team.name)}`}
+              {`Календарь игр команды - ${teamName}`}
             </h2>
             {isLoading ? <PreLoader /> : <TeamCalendar />}
           </div>
         )
-        : (<div />)}
+        : <TeamSquad />}
     </article>
   );
 };
@@ -74,5 +81,6 @@ export default connect(
   }),
   (dispatch) => ({
     loadMatchesByTeamID: bindActionCreators(loadMatchesByTeamIDAction, dispatch),
+    loadTeamSquadByID: bindActionCreators(loadTeamSquadByIDAction, dispatch),
   }),
 )(TeamInfo);

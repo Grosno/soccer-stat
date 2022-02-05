@@ -44,3 +44,11 @@ export const getTeamMatches = (id: string) => fetch(`${TEAM_INFO_URL}/${id}/matc
   }),
 })
   .then((apiResponse) => apiResponse.json());
+
+export const getTeamInfo = (id: string) => fetch(`${TEAM_INFO_URL}/${id}`, {
+  method: METHOD_GET,
+  headers: new Headers({
+    [APP_ID_FIELD]: APP_ID_VALUE,
+  }),
+})
+  .then((apiResponse) => apiResponse.json());

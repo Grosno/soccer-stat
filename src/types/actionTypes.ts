@@ -2,7 +2,7 @@ import {
   IGeneralCompetition, ITeamsSeason, ITeam, ICompetition,
 } from './api-types/apiTypes';
 import { IMatch } from './api-types/matchTypes';
-import { ITeamMatch } from './api-types/teamInfoTypes';
+import { ITeamMatch, ITeamSquad } from './api-types/teamInfoTypes';
 
 export interface IActionType {
   type: string;
@@ -48,6 +48,14 @@ export interface ITeamMatchesActionType extends IActionType {
   count?: number;
   filters?: object;
   matches?: Array<ITeamMatch>;
+  isLoading?: boolean;
+  isLoadingError?: boolean;
+  errorMsg?: string;
+}
+
+export interface ITeamSquadActionType extends IActionType {
+  activeCompetitions?: Array<ICompetition>;
+  squad?: Array<ITeamSquad>;
   isLoading?: boolean;
   isLoadingError?: boolean;
   errorMsg?: string;

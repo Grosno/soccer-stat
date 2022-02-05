@@ -2,7 +2,7 @@ import {
   IGeneralCompetition, ITeamsSeason, ITeam, ICompetition,
 } from './api-types/apiTypes';
 import { IMatch } from './api-types/matchTypes';
-import { ITeamMatch } from './api-types/teamInfoTypes';
+import { ITeamMatch, ITeamSquad } from './api-types/teamInfoTypes';
 
 interface ICommonState {
   isLoading: boolean;
@@ -16,6 +16,7 @@ export interface IState {
   teams: ITeamsState;
   matches: IMatchesState;
   teamMatches: ITeamMatchesState;
+  teamSquad: ITeamSquadState;
 }
 
 export interface IAllCompetitionsState extends ICommonState {
@@ -49,4 +50,9 @@ export interface ITeamMatchesState extends ICommonState {
   count: number;
   filters: object;
   matches: Array<ITeamMatch>;
+}
+
+export interface ITeamSquadState extends ICommonState {
+  activeCompetitions: Array<ICompetition>;
+  squad: Array<ITeamSquad>;
 }
