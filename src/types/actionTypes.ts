@@ -1,8 +1,9 @@
 import {
-  IGeneralCompetition, ITeamsSeason, ITeam, ICompetition,
+  IGeneralCompetition, ITeamsSeason, ITeam, ICompetition, ICurrentSeason,
 } from './api-types/apiTypes';
 import { IMatch } from './api-types/matchTypes';
 import { ITeamMatch, ITeamSquad } from './api-types/teamInfoTypes';
+import { IStanding } from './api-types/leaderboardTypes';
 
 export interface IActionType {
   type: string;
@@ -56,6 +57,16 @@ export interface ITeamMatchesActionType extends IActionType {
 export interface ITeamSquadActionType extends IActionType {
   activeCompetitions?: Array<ICompetition>;
   squad?: Array<ITeamSquad>;
+  isLoading?: boolean;
+  isLoadingError?: boolean;
+  errorMsg?: string;
+}
+
+export interface ILeagueLeaderboardActionType extends IActionType {
+  filters?: object;
+  competition?: ICompetition;
+  season?: ICurrentSeason;
+  standings?: Array<IStanding>;
   isLoading?: boolean;
   isLoadingError?: boolean;
   errorMsg?: string;

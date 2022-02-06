@@ -1,0 +1,32 @@
+.league-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0, .2);
+  border-bottom: 3px solid #536591;
+  margin: .375rem;
+  text-align: center;
+  min-height: 240px;
+
+  &__title {
+    background-color: lightblue;
+  }
+  &__logo {
+    display: inherit;
+    align-items: center;
+    justify-content: center;
+    padding: .375rem;
+    flex-grow: 1;
+  }
+  &__img {
+    width: 100px;
+  }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,0,0, .5);
+  }
+}
+
+.league-card p {
+  font-size: .75rem;
+  color: rgba(0,0,0, .8);
+}

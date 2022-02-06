@@ -7,6 +7,7 @@ import teamsReducer from './reducers/teamsReducer';
 import leagueCalendarReducer from './reducers/leagueCalendarReducer';
 import teamCalendarReducer from './reducers/teamCalendarReducer';
 import teamSquadReducer from './reducers/teamSquadReducer';
+import leagueLeaderboardReducer from './reducers/leagueLeaderboardReducer';
 
 export const store = createStore(
   combineReducers({
@@ -16,6 +17,7 @@ export const store = createStore(
     matches: leagueCalendarReducer,
     teamMatches: teamCalendarReducer,
     teamSquad: teamSquadReducer,
+    leagueLeaderboard: leagueLeaderboardReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk)),
 );

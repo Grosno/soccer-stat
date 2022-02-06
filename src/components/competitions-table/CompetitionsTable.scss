@@ -6,11 +6,15 @@
   color: rgba(0,0,0, .9);
 }
 
-.competitions-table th, td {
+.competitions-table th, .competitions-table td {
   text-align: center;
   width: 25%;
 }
 
 .competitions-table tr {
   height: 2rem;
+}
+
+.competitions-table a:hover {
+  text-decoration: underline;
 }

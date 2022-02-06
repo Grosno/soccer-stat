@@ -3,13 +3,25 @@
   padding-right: .375rem;
 }
 
-.teams-table {
-  &__row:hover {
-    cursor: pointer;
-    background-color: bisque;
-  }
-}
-
 .teams-table * {
   color: rgba(0,0,0, .9);
+}
+
+.teams-table a:hover {
+  text-decoration: underline;
+}
+
+.teams-table {
+  th {
+    text-align: left;
+  }
+  .col-1 {
+    min-width: 250px;
+  }
+  .col-2 {
+    min-width: 120px;
+  }
+  .col-3 {
+    min-width: 280px;
+  }
 }

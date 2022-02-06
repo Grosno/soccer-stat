@@ -1,4 +1,20 @@
 .league-calendar {
+  .col-1, .col-2 {
+    text-align: center;
+    min-width: 90px;
+  }
+  .col-3 {
+    text-align: right;
+    padding-right: .75rem;
+  }
+  .col-5 {
+    text-align: left;
+    padding-left: .75rem;
+  }
+  .col-6 {
+    text-align: center;
+    min-width: 60px;
+  }
   &__status_finished {
     padding: 0 .1875rem;
     border-radius: .375rem;

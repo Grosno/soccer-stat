@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  HashRouter, Switch, Route,
+  HashRouter, Switch, Route, Redirect,
 } from 'react-router-dom';
 import './App.scss';
 import Header from './forms/header/Header';
@@ -8,6 +8,7 @@ import Competitions from './forms/competitions/Competitions';
 import Paginator from './components/pagination/Paginator';
 import LeagueInfo from './forms/league-info/LeagueInfo';
 import TeamInfo from './forms/team-info/TeamInfo';
+import MainPage from './forms/main-page/MainPage';
 
 const App = () => (
   <HashRouter>
@@ -15,11 +16,14 @@ const App = () => (
       <Header />
       <section className="content">
         <Switch>
+          <Route exact path="/main">
+            <MainPage />
+          </Route>
           <Route exact path="/competitions">
             <Competitions />
             <Paginator />
           </Route>
-          <Route exact path="/competitions/:id/teams">
+          <Route exact path="/competitions/:id/league">
             <LeagueInfo />
           </Route>
           <Route exact path="/teams/:id/matches">
@@ -30,7 +34,7 @@ const App = () => (
           </Route>
         </Switch>
       </section>
-      {/* <Redirect to={COMPETITION_PATH} /> */}
+      <Redirect to="/main" />
     </div>
   </HashRouter>
 );

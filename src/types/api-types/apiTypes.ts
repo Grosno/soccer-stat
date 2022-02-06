@@ -31,7 +31,7 @@ interface IAreaCompetitionState {
   name: string;
 }
 
-interface ICurrentSeason extends ISeason {
+export interface ICurrentSeason extends ISeason {
   winner: string;
 }
 

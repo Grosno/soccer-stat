@@ -34,17 +34,19 @@ const CompetitionsTable = ({
   }, [pageSize, currentPage]);
 
   return (
-    <table className="competitions-table">
-      <tbody>
+    <table className="competitions-table table">
+      <thead>
         <tr>
           <th>Название Лиги</th>
           <th>Страна</th>
           <th>Начало сезона</th>
           <th>Окончание сезона</th>
         </tr>
+      </thead>
+      <tbody>
         {limitedCompetitions.map((competition: IGeneralCompetition, index: number) => (
           <tr key={index}>
-            <td><a href={`#/competitions/${competition.id}/teams`}>{competition.name}</a></td>
+            <td><a href={`#/competitions/${competition.id}/league`}>{competition.name}</a></td>
             <td>{competition.area.name}</td>
             <td>{competition.currentSeason !== null ? moment(competition.currentSeason.startDate).format('DD MMM YYYY') : EMPTY_VALUE}</td>
             <td>{competition.currentSeason !== null ? moment(competition.currentSeason.endDate).format('DD MMM YYYY') : EMPTY_VALUE}</td>

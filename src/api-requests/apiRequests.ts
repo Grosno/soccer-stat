@@ -52,3 +52,11 @@ export const getTeamInfo = (id: string) => fetch(`${TEAM_INFO_URL}/${id}`, {
   }),
 })
   .then((apiResponse) => apiResponse.json());
+
+export const getLeaderboardInfo = (id: string) => fetch(`${COMPETITIONS_URL}/${id}/standings`, {
+  method: METHOD_GET,
+  headers: new Headers({
+    [APP_ID_FIELD]: APP_ID_VALUE,
+  }),
+})
+  .then((apiResponse) => apiResponse.json());

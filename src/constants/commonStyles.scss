@@ -2,3 +2,27 @@ $base-background-color: #EBEBEB;
 $component-background-color-light: #FFFFFF;
 $hover-color: #00BFFF;
 $component-border-color: #F5F5F5;
+
+.table {
+  margin: 0 auto;
+}
+
+.table td {
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}
+
+.table tbody tr:nth-child(odd){
+  background: #fff;
+}
+.table tbody tr:nth-child(even){
+  background: #F7F7F7;
+}
+
+.table tbody tr:hover {
+  background: lightblue;
+}
+
+.table th {
+  color: #94999f;
+}
