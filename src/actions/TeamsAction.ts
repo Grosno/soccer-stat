@@ -5,6 +5,7 @@ import {
 } from '../constants/actions/teams';
 import { ITeamsActionType } from '../types/actionTypes';
 import { getTeams } from '../api-requests/apiRequests';
+import { EMPTY_STRING } from '../constants/common';
 
 const showTeamsLoader = (): ITeamsActionType => ({
   type: SHOW_TEAMS_LOADER,
@@ -29,7 +30,11 @@ const loadTeamsError = (error: string): ITeamsActionType => ({
 export const loadTeamsByIDAction = (id: string) => (dispatch: Dispatch) => {
   dispatch(showTeamsLoader());
   getTeams(id)
-    .then((response: ITeams) => dispatch(loadTeamsSuccess(response)))
-    .catch((error) => dispatch(loadTeamsError(error)))
+    .then((response: ITeams) => (
+      JSON.stringify(response).includes('errorCode')
+        ? dispatch(loadTeamsError(response.message || EMPTY_STRING))
+        : dispatch(loadTeamsSuccess(response))
+    ))
+    .catch((error) => console.log(error))
     .finally(() => dispatch(hideTeamsLoader()));
 };

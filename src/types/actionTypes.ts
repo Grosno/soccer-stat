@@ -16,6 +16,7 @@ export interface ICompetitionsActionType extends IActionType {
   isLoading?: boolean;
   isLoadingError?: boolean;
   errorMsg?: string;
+  error?: number;
 }
 
 export interface IPaginationActionType extends IActionType {
@@ -43,6 +44,7 @@ export interface IMatchesActionType extends IActionType {
   isLoading?: boolean;
   isLoadingError?: boolean;
   errorMsg?: string;
+  error?: number;
 }
 
 export interface ITeamMatchesActionType extends IActionType {
@@ -70,4 +72,5 @@ export interface ILeagueLeaderboardActionType extends IActionType {
   isLoading?: boolean;
   isLoadingError?: boolean;
   errorMsg?: string;
+  error?: number;
 }

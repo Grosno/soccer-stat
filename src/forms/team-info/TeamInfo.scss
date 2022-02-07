@@ -1,9 +1,7 @@
-@import "src/constants/commonStyles";
-
 .team-info-form {
   width: 100%;
 
-  &__menu {
-    background-color: $base-background-color;
+  &__title {
+    text-align: center;
   }
 }

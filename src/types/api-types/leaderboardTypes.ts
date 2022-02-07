@@ -5,6 +5,8 @@ export interface ILeaderboard {
   competition: ICompetition;
   season: ICurrentSeason;
   standings: Array<IStanding>;
+  error?: number;
+  message?: string;
 }
 
 export interface IStanding {

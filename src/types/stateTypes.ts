@@ -9,6 +9,7 @@ interface ICommonState {
   isLoading: boolean;
   isLoadingError: boolean;
   errorMsg: string;
+  error: number;
 }
 
 export interface IState {

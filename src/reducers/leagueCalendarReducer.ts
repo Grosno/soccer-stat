@@ -2,7 +2,7 @@ import produce from 'immer';
 import { IMatchesState } from '../types/stateTypes';
 import { IMatchesActionType } from '../types/actionTypes';
 import { ICompetition } from '../types/api-types/apiTypes';
-import { EMPTY_STRING } from '../constants/common';
+import { EMPTY_STRING, ZERO_VALUE } from '../constants/common';
 import { LOAD_MATCHES_ERROR, LOAD_MATCHES_SUCCESS } from '../constants/actions/leagueCalendar';
 import { IMatch } from '../types/api-types/matchTypes';
 
@@ -12,6 +12,7 @@ const initialState: IMatchesState = {
   matches: [],
   isLoading: false,
   isLoadingError: false,
+  error: ZERO_VALUE,
   errorMsg: EMPTY_STRING,
   filters: {},
 };

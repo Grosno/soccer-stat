@@ -2,7 +2,7 @@ import produce from 'immer';
 import { ITeamSquadState } from '../types/stateTypes';
 import { ITeamSquadActionType } from '../types/actionTypes';
 import { ICompetition } from '../types/api-types/apiTypes';
-import { EMPTY_STRING } from '../constants/common';
+import { EMPTY_STRING, ZERO_VALUE } from '../constants/common';
 import {
   HIDE_TEAM_SQUAD_LOADER,
   LOAD_TEAM_SQUAD_ERROR,
@@ -17,6 +17,7 @@ const initialState: ITeamSquadState = {
   isLoading: false,
   isLoadingError: false,
   errorMsg: EMPTY_STRING,
+  error: ZERO_VALUE,
 };
 
 const showTeamSquadLoader = (draft: ITeamSquadState) => {

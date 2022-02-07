@@ -16,13 +16,18 @@
     min-width: 60px;
   }
   &__status_finished {
-    padding: 0 .1875rem;
+    padding: 0 .375rem;
     border-radius: .375rem;
     background-color: lightseagreen;
   }
   &__status_scheduled {
-    padding: 0 .1875rem;
+    padding: 0 .375rem;
     border-radius: .375rem;
     background-color: lightskyblue;
+  }
+  &__status_postponed {
+    padding: 0 .375rem;
+    border-radius: .375rem;
+    background-color: darkorange;
   }
 }

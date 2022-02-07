@@ -9,6 +9,7 @@ import Paginator from './components/pagination/Paginator';
 import LeagueInfo from './forms/league-info/LeagueInfo';
 import TeamInfo from './forms/team-info/TeamInfo';
 import MainPage from './forms/main-page/MainPage';
+import ErrorForm from './forms/error-form/ErrorForm';
 
 const App = () => (
   <HashRouter>
@@ -31,6 +32,9 @@ const App = () => (
           </Route>
           <Route exact path="/teams/:id">
             <TeamInfo />
+          </Route>
+          <Route exact path="/error">
+            <ErrorForm />
           </Route>
         </Switch>
       </section>

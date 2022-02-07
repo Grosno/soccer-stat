@@ -3,6 +3,8 @@ export interface IAllCompetitions {
   competitions: Array<IGeneralCompetition>;
   count: number;
   filters: object;
+  error?: number;
+  message?: string;
 }
 
 export interface IGeneralCompetition {
@@ -42,6 +44,8 @@ export interface ITeams {
   competition: ICompetition;
   season: ITeamsSeason;
   teams: Array<ITeam>;
+  errorCode?: number;
+  message?: string;
 }
 
 export interface ICompetition {

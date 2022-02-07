@@ -1,7 +1,7 @@
 import produce from 'immer';
 import { ITeamMatchesState } from '../types/stateTypes';
 import { ITeamMatchesActionType } from '../types/actionTypes';
-import { EMPTY_STRING } from '../constants/common';
+import { EMPTY_STRING, ZERO_VALUE } from '../constants/common';
 import {
   HIDE_TEAM_CALENDAR_LOADER, LOAD_TEAM_CALENDAR_ERROR,
   LOAD_TEAM_CALENDAR_SUCCESS,
@@ -15,6 +15,7 @@ const initialState: ITeamMatchesState = {
   isLoading: false,
   isLoadingError: false,
   errorMsg: EMPTY_STRING,
+  error: ZERO_VALUE,
   filters: {},
 };
 

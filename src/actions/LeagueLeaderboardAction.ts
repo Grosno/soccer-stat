@@ -7,6 +7,7 @@ import {
 } from '../constants/actions/leaderboard';
 import { ILeagueLeaderboardActionType } from '../types/actionTypes';
 import { ILeaderboard } from '../types/api-types/leaderboardTypes';
+import { EMPTY_STRING, ZERO_VALUE } from '../constants/common';
 
 const showLeaderboardLoader = (): ILeagueLeaderboardActionType => ({
   type: SHOW_LEAGUE_LEADERBOARD_LOADER,
@@ -22,15 +23,18 @@ const loadLeaderboardSuccess = (data: ILeaderboard): ILeagueLeaderboardActionTyp
   competition: data.competition,
   season: data.season,
 });
-const loadLeaderboardError = (error: string): ILeagueLeaderboardActionType => ({
+const loadLeaderboardError = (code: number, message: string): ILeagueLeaderboardActionType => ({
   type: LOAD_LEAGUE_LEADERBOARD_ERROR,
-  errorMsg: error,
+  errorMsg: message,
 });
 
 export const loadLeagueLeaderboardAction = (id: string) => (dispatch: Dispatch) => {
   dispatch(showLeaderboardLoader());
   getLeaderboardInfo(id)
-    .then((response: ILeaderboard) => dispatch(loadLeaderboardSuccess(response)))
-    .catch((error) => dispatch(loadLeaderboardError(error)))
+    .then((response: ILeaderboard) => (
+      JSON.stringify(response).includes('error') || JSON.stringify(response).includes('errorCode')
+        ? dispatch(loadLeaderboardError(response.error || ZERO_VALUE, response.message || EMPTY_STRING))
+        : dispatch(loadLeaderboardSuccess(response))))
+    .catch((error) => console.log(error))
     .finally(() => dispatch(hideLeaderboardLoader()));
 };

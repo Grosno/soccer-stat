@@ -1,4 +1,23 @@
 .team-calendar {
+  .col-1, .col-2 {
+    text-align: center;
+    min-width: 120px;
+  }
+  .col-3 {
+    text-align: right;
+    padding-right: .75rem;
+  }
+  .col-5 {
+    text-align: left;
+    padding-left: .75rem;
+  }
+  .col-6 {
+    text-align: center;
+    min-width: 60px;
+  }
+  .col-3, .col-5 {
+    min-width: 250px;
+  }
   &__status_finished {
     padding: 0 .1875rem;
     border-radius: .375rem;
@@ -9,8 +28,4 @@
     border-radius: .375rem;
     background-color: lightskyblue;
   }
-}
-
-.team-calendar th, .team-calendar td {
-  width: 16.6%;
 }

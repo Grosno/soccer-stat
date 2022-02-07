@@ -7,17 +7,20 @@ import { CalendarOutlined, TableOutlined, TeamOutlined } from '@ant-design/icons
 import { IState } from '../../types/stateTypes';
 import { loadTeamsByIDAction } from '../../actions/TeamsAction';
 import { ICompetition } from '../../types/api-types/apiTypes';
-import LoadingError from '../../components/loading-error/LoadingError';
 import './LeagueInfo.scss';
 import TeamsTable from '../../components/teams-table/TeamsTable';
 import LeagueCalendar from '../../components/league-calendar/LeagueCalendar';
 import { loadMatchesByIDAction } from '../../actions/LeagueCalendarAction';
 import LeagueLeaderboard from '../../components/league-leaderboard/LeagueLeaderboard';
 import { loadLeagueLeaderboardAction } from '../../actions/LeagueLeaderboardAction';
+import PreLoader from '../../components/pre-loader/PreLoader';
 
 interface IProps {
   competition: ICompetition;
-  isLoadingError: boolean;
+  isTeamsLoading: boolean;
+  isTeamsLoadingError: boolean;
+  isStandingLoadingError: boolean;
+  errorMsg: string;
   loadTeamsByID: (id: string) => void;
   loadMatchesByID: (id: string) => void;
   loadLeagueLeaderboardByID: (id: string) => void;
@@ -28,7 +31,8 @@ interface IParams {
 }
 
 const LeagueInfo = ({
-  competition, isLoadingError, loadTeamsByID, loadMatchesByID, loadLeagueLeaderboardByID,
+  competition, isTeamsLoading, isTeamsLoadingError, isStandingLoadingError,
+  errorMsg, loadTeamsByID, loadMatchesByID, loadLeagueLeaderboardByID,
 }: IProps) => {
   const params = useParams<IParams>();
   const [selectedMenu, setSelectedMenu] = useState('teams');
@@ -66,23 +70,39 @@ const LeagueInfo = ({
     }
   };
 
-  if (isLoadingError) {
-    return <LoadingError message="командах выбранной лиги" />;
-  }
-
   return (
     <article className="league-info-form">
-      <Menu
-        className="league-info-form__menu"
-        mode="horizontal"
-        onClick={handleMenuClick}
-        selectedKeys={[selectedMenu]}
-      >
-        <Menu.Item key="teams" icon={<TeamOutlined />}>Инфо</Menu.Item>
-        <Menu.Item key="leaderboard" icon={<TableOutlined />}>Турнирная таблица</Menu.Item>
-        <Menu.Item key="calendar" icon={<CalendarOutlined />}>Календарь</Menu.Item>
-      </Menu>
-      {renderComponent(selectedMenu)}
+      {/* eslint-disable-next-line no-nested-ternary */}
+      {isTeamsLoadingError
+        ? (
+          <div>
+            <Menu
+              className="league-info-form__menu"
+              mode="horizontal"
+              disabled
+            >
+              <Menu.Item key="teams" icon={<TeamOutlined />}>Инфо</Menu.Item>
+              <Menu.Item key="leaderboard" icon={<TableOutlined />}>Турнирная таблица</Menu.Item>
+              <Menu.Item key="calendar" icon={<CalendarOutlined />}>Календарь</Menu.Item>
+            </Menu>
+            <p>{errorMsg}</p>
+          </div>
+        )
+        : isTeamsLoading ? <PreLoader /> : (
+          <div>
+            <Menu
+              className="league-info-form__menu"
+              mode="horizontal"
+              onClick={handleMenuClick}
+              selectedKeys={[selectedMenu]}
+            >
+              <Menu.Item key="teams" icon={<TeamOutlined />}>Инфо</Menu.Item>
+              <Menu.Item disabled={isStandingLoadingError} key="leaderboard" icon={<TableOutlined />}>Турнирная таблица</Menu.Item>
+              <Menu.Item key="calendar" icon={<CalendarOutlined />}>Календарь</Menu.Item>
+            </Menu>
+            {renderComponent(selectedMenu)}
+          </div>
+        )}
     </article>
   );
 };
@@ -90,7 +110,10 @@ const LeagueInfo = ({
 export default connect(
   (state: IState) => ({
     competition: state.teams.competition,
-    isLoadingError: state.teams.isLoadingError,
+    isTeamsLoading: state.teams.isLoading,
+    isTeamsLoadingError: state.teams.isLoadingError,
+    isStandingLoadingError: state.leagueLeaderboard.isLoadingError,
+    errorMsg: state.teams.errorMsg,
   }),
   (dispatch) => ({
     loadTeamsByID: bindActionCreators(loadTeamsByIDAction, dispatch),

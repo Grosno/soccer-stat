@@ -2,7 +2,7 @@ import produce from 'immer';
 import { ITeamsState } from '../types/stateTypes';
 import { ITeamsActionType } from '../types/actionTypes';
 import { ITeamsSeason, ITeam, ICompetition } from '../types/api-types/apiTypes';
-import { EMPTY_STRING } from '../constants/common';
+import { EMPTY_STRING, ZERO_VALUE } from '../constants/common';
 import {
   HIDE_TEAMS_LOADER, LOAD_TEAMS_ERROR, LOAD_TEAMS_SUCCESS, SHOW_TEAMS_LOADER,
 } from '../constants/actions/teams';
@@ -15,6 +15,7 @@ const initialState: ITeamsState = {
   isLoading: false,
   isLoadingError: false,
   errorMsg: EMPTY_STRING,
+  error: ZERO_VALUE,
   filters: {},
 };
 

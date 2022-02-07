@@ -2,7 +2,7 @@ import produce from 'immer';
 import { ILeagueLeaderboardState } from '../types/stateTypes';
 import { ILeagueLeaderboardActionType } from '../types/actionTypes';
 import { ICompetition, ICurrentSeason } from '../types/api-types/apiTypes';
-import { EMPTY_STRING } from '../constants/common';
+import { EMPTY_STRING, ZERO_VALUE } from '../constants/common';
 import { IStanding } from '../types/api-types/leaderboardTypes';
 import {
   HIDE_LEAGUE_LEADERBOARD_LOADER, LOAD_LEAGUE_LEADERBOARD_ERROR,
@@ -17,6 +17,7 @@ const initialState: ILeagueLeaderboardState = {
   isLoading: false,
   isLoadingError: false,
   errorMsg: EMPTY_STRING,
+  error: ZERO_VALUE,
   filters: {},
 };
 
@@ -30,9 +31,10 @@ const hideLeaderboardLoader = (draft: ILeagueLeaderboardState) => {
   return draft;
 };
 
-const loadingError = (draft: ILeagueLeaderboardState, error?: string) => {
+const loadingError = (draft: ILeagueLeaderboardState, error?: number, message?: string) => {
   draft.isLoadingError = true;
-  draft.errorMsg = error || EMPTY_STRING;
+  draft.errorMsg = message || EMPTY_STRING;
+  draft.error = error || ZERO_VALUE;
   return draft;
 };
 
@@ -51,7 +53,7 @@ export default (state = initialState, action: ILeagueLeaderboardActionType) => p
       case SHOW_LEAGUE_LEADERBOARD_LOADER: return showLeaderboardLoader(draft);
       case HIDE_LEAGUE_LEADERBOARD_LOADER: return hideLeaderboardLoader(draft);
       case LOAD_LEAGUE_LEADERBOARD_SUCCESS: return loadLeagueLeaderboard(draft, action.standings, action.competition, action.season);
-      case LOAD_LEAGUE_LEADERBOARD_ERROR: return loadingError(draft, action.errorMsg);
+      case LOAD_LEAGUE_LEADERBOARD_ERROR: return loadingError(draft, action.error, action.errorMsg);
       default: return state;
     }
   },

@@ -13,6 +13,7 @@ import logoEuro from '../images/logo-euro_2020.svg';
 
 export const EMPTY_STRING = '';
 export const EMPTY_VALUE = '-';
+export const ZERO_VALUE = 0;
 
 export const DEFAULT_PAGE_SIZE_VALUE = 30;
 
@@ -25,6 +26,12 @@ export enum PlayerPosition {
   Attacker = 'Attacker',
   Goalkeeper = 'Goalkeeper',
   Midfielder = 'Midfielder',
+}
+
+export enum GameStatus {
+  FINISHED = 'Завершен',
+  POSTPONED = 'Перенесен',
+  SCHEDULED = 'По расписанию',
 }
 
 export const AvailableLeagues = [

@@ -7,7 +7,7 @@ import {
   SHOW_COMPETITIONS_LOADER,
 } from '../constants/actions/competitions';
 import { IGeneralCompetition } from '../types/api-types/apiTypes';
-import { EMPTY_STRING } from '../constants/common';
+import { EMPTY_STRING, ZERO_VALUE } from '../constants/common';
 
 const initialState: IAllCompetitionsState = {
   competitions: [],
@@ -15,6 +15,7 @@ const initialState: IAllCompetitionsState = {
   isLoading: false,
   isLoadingError: false,
   errorMsg: EMPTY_STRING,
+  error: ZERO_VALUE,
   filters: {},
 };
 
@@ -28,9 +29,10 @@ const hideLoader = (draft: IAllCompetitionsState) => {
   return draft;
 };
 
-const loadingError = (draft: IAllCompetitionsState, error?: string) => {
+const loadingError = (draft: IAllCompetitionsState, error?: number, message?: string) => {
   draft.isLoadingError = true;
-  draft.errorMsg = error || EMPTY_STRING;
+  draft.errorMsg = message || EMPTY_STRING;
+  draft.error = error || ZERO_VALUE;
   return draft;
 };
 
@@ -48,7 +50,7 @@ export default (state = initialState, action: ICompetitionsActionType) => produc
       case SHOW_COMPETITIONS_LOADER: return showLoader(draft);
       case HIDE_COMPETITIONS_LOADER: return hideLoader(draft);
       case LOAD_COMPETITIONS_SUCCESS: return loadCompetitions(draft, action.competitions, action.count);
-      case LOAD_COMPETITIONS_ERROR: return loadingError(draft, action.errorMsg);
+      case LOAD_COMPETITIONS_ERROR: return loadingError(draft, action.error, action.errorMsg);
       default: return state;
     }
   },
